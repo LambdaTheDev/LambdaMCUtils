@@ -3,6 +3,7 @@ package pl.lambdathedev.lambdautils.utils.messaging;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import pl.lambdathedev.lambdautils.LambdaUtils;
 
 public class MessagingUtil
 {
@@ -32,7 +33,12 @@ public class MessagingUtil
 
     public static String prefix()
     {
-        String prefix = "&aLambdaUtils &r>> ";
+        String prefix = LambdaUtils.getInstance().getConfigManager().getDefaultConfig().getConfig().getString("prefix");
+        if(prefix == null)
+        {
+            prefix = "&aLambdaUtils &r>> ";
+        }
+
         return ChatColor.translateAlternateColorCodes('&', prefix);
     }
 

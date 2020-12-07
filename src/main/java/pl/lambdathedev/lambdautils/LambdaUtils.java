@@ -37,10 +37,14 @@ public final class LambdaUtils extends JavaPlugin
 
     private void registerListeners()
     {
+        getServer().getPluginManager().registerEvents(new OnPlayerAttack(), this);
         getServer().getPluginManager().registerEvents(new OnPlayerChat(), this);
         getServer().getPluginManager().registerEvents(new OnPlayerConnect(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerInteract(), this);
         getServer().getPluginManager().registerEvents(new OnPlayerJoin(), this);
+        getServer().getPluginManager().registerEvents(new OnPlayerMove(), this);
         getServer().getPluginManager().registerEvents(new OnPlayerQuit(), this);
+        getServer().getPluginManager().registerEvents(new OnPreCommand(), this);
         getServer().getPluginManager().registerEvents(new OnServerPing(), this);
     }
 

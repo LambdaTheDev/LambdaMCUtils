@@ -54,7 +54,6 @@ public class PlayerData
         this.rank = rank;
     }
 
-
     public boolean isLoggedIn()
     {
         return loggedIn;
