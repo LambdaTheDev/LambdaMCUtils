@@ -1,0 +1,7 @@
+name: LambdaUtils
+version: @version@
+main: pl.lambdathedev.lambdautils.LambdaUtils
+api-version: 1.16
+authors: [ LambdaTheDev ]
+description: Basic plugin for basic commands and listeners.
+website: https://github.com/LambdaTheDev/LambdaUtils
