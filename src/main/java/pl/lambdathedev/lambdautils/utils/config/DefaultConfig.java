@@ -7,23 +7,23 @@ import java.io.File;
 
 public class DefaultConfig implements IConfig
 {
-    private File configFile;
-    private FileConfiguration config;
+    private LambdaUtils plugin;
 
     public DefaultConfig(LambdaUtils plugin)
     {
+        this.plugin = plugin;
     }
 
     @Override
     public void setup()
     {
-
+        plugin.saveDefaultConfig();
     }
 
     @Override
     public FileConfiguration getConfig()
     {
-        return null;
+        return plugin.getConfig();
     }
 
     @Override
@@ -35,12 +35,12 @@ public class DefaultConfig implements IConfig
     @Override
     public void reload()
     {
-
+        plugin.reloadConfig();
     }
 
     @Override
     public void save()
     {
-
+        plugin.saveConfig();
     }
 }

@@ -1,6 +1,5 @@
 package pl.lambdathedev.lambdautils.utils.config.custom;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -11,13 +10,13 @@ import pl.lambdathedev.lambdautils.utils.messaging.MessagingUtil;
 import java.io.File;
 import java.io.IOException;
 
-public class PunishmentsConfig implements IConfig
+public class PlayersConfig implements IConfig
 {
     private LambdaUtils plugin;
     private FileConfiguration config;
     private File configFile;
 
-    public PunishmentsConfig(LambdaUtils plugin)
+    public PlayersConfig(LambdaUtils plugin)
     {
         this.plugin = plugin;
     }
@@ -43,7 +42,7 @@ public class PunishmentsConfig implements IConfig
     @Override
     public String getName()
     {
-        return "punishments.yml";
+        return "players.yml";
     }
 
     @Override
