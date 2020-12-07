@@ -3,4 +3,6 @@ rules:
   - "Do not grief"
   - "Be cool"
 
-forceRegister: true
+motd: "Super server. Join now."
+joinMessage: "{player} joined the server!"
+leaveMessage: "{player} has left the server!"

@@ -20,13 +20,33 @@ public class Punishment
         this.reason = reason;
     }
 
-    public boolean create()
-    {
-        return false;
-    }
-
     public void delete()
     {
 
+    }
+
+    public UUID getUuid()
+    {
+        return uuid;
+    }
+
+    public UUID getIssuer()
+    {
+        return issuer;
+    }
+
+    public PunishmentType getType()
+    {
+        return type;
+    }
+
+    public Date getExpiryDate()
+    {
+        return expiryDate;
+    }
+
+    public String getReason()
+    {
+        return reason;
     }
 }

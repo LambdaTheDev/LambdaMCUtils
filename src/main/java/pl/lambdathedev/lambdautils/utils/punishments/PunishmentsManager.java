@@ -2,7 +2,7 @@ package pl.lambdathedev.lambdautils.utils.punishments;
 
 import java.util.UUID;
 
-public class PunishmentsFetcher
+public class PunishmentsManager
 {
     public static Punishment getBan(UUID uuid)
     {

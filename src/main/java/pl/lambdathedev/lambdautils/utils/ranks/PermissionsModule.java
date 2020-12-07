@@ -20,6 +20,7 @@ public class PermissionsModule
 
     public void addPermission(String permission)
     {
+        if(player.hasPermission(permission)) return;
         permissionAttachment.setPermission(permission, true);
     }
 
@@ -30,9 +31,8 @@ public class PermissionsModule
 
     public void clearPermissions()
     {
-        Set<PermissionAttachmentInfo> playerPermissions = new HashSet<PermissionAttachmentInfo>(player.getEffectivePermissions());
+        Set<PermissionAttachmentInfo> playerPermissions = new HashSet<>(player.getEffectivePermissions());
 
-        // Loop over and remove attachments
         for (PermissionAttachmentInfo permissionInfo : playerPermissions)
         {
             String permission = permissionInfo.getPermission();
