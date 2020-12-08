@@ -6,3 +6,4 @@ rules:
 motd: "Super server. Join now."
 joinMessage: "{player} joined the server!"
 leaveMessage: "{player} has left the server!"
+password-salt: "fsdic90ejtue8j3ct3"

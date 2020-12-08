@@ -1,6 +1,7 @@
 package pl.lambdathedev.lambdautils.utils.ranks;
 
 import pl.lambdathedev.lambdautils.LambdaUtils;
+import pl.lambdathedev.lambdautils.utils.config.custom.RanksConfig;
 import pl.lambdathedev.lambdautils.utils.playerdata.PlayerData;
 
 import java.util.Collection;
@@ -29,6 +30,12 @@ public class Rank
         return prefix;
     }
 
+    public void setPrefix(String prefix)
+    {
+        this.prefix = prefix;
+        save();
+    }
+
     public Collection<String> getPermissions()
     {
         return permissions;
@@ -38,11 +45,13 @@ public class Rank
     {
         if(permissions.contains(permission)) return;
         permissions.add(permission);
+        save();
     }
 
     public void removePermission(String permission)
     {
         permissions.remove(permission);
+        save();
     }
 
     public void applyPermissions(UUID uuid)
@@ -54,5 +63,17 @@ public class Rank
         {
             permsMod.addPermission(permission);
         }
+    }
+
+    private void save()
+    {
+        LambdaUtils.getInstance().getConfigManager().getRanksConfig().save();
+    }
+
+    public void delete()
+    {
+        RanksConfig cfg = LambdaUtils.getInstance().getConfigManager().getRanksConfig();
+        cfg.getConfig().set("ranks." + getName(), null);
+        cfg.save();
     }
 }

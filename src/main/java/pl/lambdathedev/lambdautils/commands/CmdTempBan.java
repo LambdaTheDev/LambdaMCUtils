@@ -1,4 +1,6 @@
 package pl.lambdathedev.lambdautils.commands;
 
-public class CmdTempBan {
+public class CmdTempBan
+{
+    //todo: To do when I have more time
 }

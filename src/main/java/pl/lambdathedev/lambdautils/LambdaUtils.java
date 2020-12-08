@@ -1,8 +1,7 @@
 package pl.lambdathedev.lambdautils;
 
-import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import pl.lambdathedev.lambdautils.commands.*;
 import pl.lambdathedev.lambdautils.listeners.*;
 import pl.lambdathedev.lambdautils.utils.config.ConfigManager;
 import pl.lambdathedev.lambdautils.utils.playerdata.PlayerData;
@@ -50,7 +49,14 @@ public final class LambdaUtils extends JavaPlugin
 
     private void registerCommands()
     {
-        //todo: When commands are ready
+        getCommand("ban").setExecutor(new CmdBan());
+        getCommand("gamemode").setExecutor(new CmdGameMode());
+        getCommand("kick").setExecutor(new CmdKick());
+        getCommand("login").setExecutor(new CmdLogin());
+        getCommand("modifyrank").setExecutor(new CmdModifyRank());
+        getCommand("mute").setExecutor(new CmdMute());
+        getCommand("setrank").setExecutor(new CmdSetRank());
+        getCommand("register").setExecutor(new CmdRegister());
     }
 
     private void loadRanks()
@@ -85,5 +91,10 @@ public final class LambdaUtils extends JavaPlugin
     public ConfigManager getConfigManager()
     {
         return configManager;
+    }
+
+    public void reloadRanks()
+    {
+        loadRanks();
     }
 }

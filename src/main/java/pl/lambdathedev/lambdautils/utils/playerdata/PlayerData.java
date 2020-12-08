@@ -44,6 +44,11 @@ public class PlayerData
         return permissions;
     }
 
+    public boolean isRegistered()
+    {
+        return password != null;
+    }
+
     public Rank getRank()
     {
         return rank;
