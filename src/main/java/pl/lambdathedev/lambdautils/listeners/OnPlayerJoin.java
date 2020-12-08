@@ -42,7 +42,11 @@ public class OnPlayerJoin implements Listener
             @Override
             public void run()
             {
-
+                PlayerData data = LambdaUtils.getInstance().getPlayerData().getOrDefault(e.getPlayer().getUniqueId(), null);
+                if(data != null && !data.isLoggedIn())
+                {
+                    data.getPlayer().kickPlayer("&cYou did not log in!");
+                }
             }
         }.runTaskLater(LambdaUtils.getPlugin(LambdaUtils.class), 20 * 60 * 3); //3 minutes
     }
