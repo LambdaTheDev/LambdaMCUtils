@@ -3,6 +3,7 @@ package pl.lambdathedev.lambdautils;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.lambdathedev.lambdautils.commands.*;
 import pl.lambdathedev.lambdautils.listeners.*;
+import pl.lambdathedev.lambdautils.utils.AutoMessageUtil;
 import pl.lambdathedev.lambdautils.utils.config.ConfigManager;
 import pl.lambdathedev.lambdautils.utils.playerdata.PlayerData;
 import pl.lambdathedev.lambdautils.utils.ranks.Rank;
@@ -26,6 +27,7 @@ public final class LambdaUtils extends JavaPlugin
         ranks = new HashMap<>();
         playerData = new HashMap<>();
         configManager = new ConfigManager(this);
+        new AutoMessageUtil(this);
 
         registerCommands();
         registerListeners();
@@ -57,6 +59,7 @@ public final class LambdaUtils extends JavaPlugin
         getCommand("mute").setExecutor(new CmdMute());
         getCommand("setrank").setExecutor(new CmdSetRank());
         getCommand("register").setExecutor(new CmdRegister());
+        getCommand("rules").setExecutor(new CmdRules());
     }
 
     private void loadRanks()

@@ -2,7 +2,11 @@ prefix: '&aLambdaUtils >> &r'
 rules:
   - "Do not grief"
   - "Be cool"
-
+automessageMessages:
+  - "&aPlugin developed by LambdaTheDev (https://github.com/LambdaTheDev)!"
+  - "&cCheck server rules by using /rules command!"
+  - "&aWant to see more from Lambda? Check out their Discord: https://discord.gg/jn3w3RvVhY!"
+automessageDelay: 5
 motd: "Super server. Join now."
 joinMessage: "{player} joined the server!"
 leaveMessage: "{player} has left the server!"
