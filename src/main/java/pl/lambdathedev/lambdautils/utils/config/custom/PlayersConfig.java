@@ -30,13 +30,13 @@ public class PlayersConfig implements IConfig
             try
             {
                 configFile.createNewFile();
-                config = YamlConfiguration.loadConfiguration(configFile);
             }
             catch (IOException e)
             {
                 MessagingUtil.sendMessageToConsole(ChatColor.RED + "Could not create " + getName() + " file!");
             }
         }
+        config = YamlConfiguration.loadConfiguration(configFile);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class PlayersConfig implements IConfig
 
     @Override
     public FileConfiguration getConfig() {
-        return null;
+        return config;
     }
 
     @Override

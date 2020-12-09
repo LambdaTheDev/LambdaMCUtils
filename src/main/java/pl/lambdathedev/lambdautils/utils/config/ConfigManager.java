@@ -23,6 +23,11 @@ public class ConfigManager
         punishmentsConfig = new PunishmentsConfig(plugin);
         ranksConfig = new RanksConfig(plugin);
         playersConfig = new PlayersConfig(plugin);
+
+        defaultConfig.setup();
+        punishmentsConfig.setup();
+        ranksConfig.setup();
+        playersConfig.setup();
     }
 
     public DefaultConfig getDefaultConfig()

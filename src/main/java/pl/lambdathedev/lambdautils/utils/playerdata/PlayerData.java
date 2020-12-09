@@ -57,6 +57,7 @@ public class PlayerData
     public void setRank(Rank rank)
     {
         this.rank = rank;
+        rank.applyPermissions(uuid);
     }
 
     public boolean isLoggedIn()
@@ -79,13 +80,20 @@ public class PlayerData
     public void setPassword(String plainPassword)
     {
         String salt = LambdaUtils.getInstance().getConfigManager().getDefaultConfig().getConfig().getString("password-salt");
-        String hashedPassword = DigestUtils.sha256Hex(plainPassword + salt);
+        this.password = DigestUtils.sha256Hex(plainPassword + salt);
     }
 
     public void save()
     {
         FileConfiguration cfg = LambdaUtils.getInstance().getConfigManager().getPlayersConfig().getConfig();
-        cfg.set("players." + uuid.toString() + ".rank", rank.getName());
+
+        String rankName = null;
+        if(rank != null)
+        {
+            rankName = rank.getName();
+        }
+
+        cfg.set("players." + uuid.toString() + ".rank", rankName);
         cfg.set("players." + uuid.toString() + ".password", password);
         LambdaUtils.getInstance().getConfigManager().getPlayersConfig().save();
     }

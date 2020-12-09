@@ -1,5 +1,6 @@
 package pl.lambdathedev.lambdautils.utils.ranks;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import pl.lambdathedev.lambdautils.LambdaUtils;
 
@@ -24,7 +25,11 @@ public class RanksManager
     {
         FileConfiguration cfg = LambdaUtils.getInstance().getConfigManager().getRanksConfig().getConfig();
         Collection<Rank> result = new ArrayList<>();
-        for(String key : cfg.getConfigurationSection("ranks").getKeys(false))
+
+        ConfigurationSection section = cfg.getConfigurationSection("ranks");
+        if(section == null) return result;
+
+        for(String key : section.getKeys(false))
         {
             result.add(getRank(key));
         }

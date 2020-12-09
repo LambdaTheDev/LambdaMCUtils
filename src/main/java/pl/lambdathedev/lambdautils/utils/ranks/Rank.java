@@ -65,9 +65,12 @@ public class Rank
         }
     }
 
-    private void save()
+    public void save()
     {
-        LambdaUtils.getInstance().getConfigManager().getRanksConfig().save();
+        RanksConfig cfg = LambdaUtils.getInstance().getConfigManager().getRanksConfig();
+        cfg.getConfig().set("ranks." + name + ".prefix", prefix);
+        cfg.getConfig().set("ranks." + name + ".permissions", permissions);
+        cfg.save();
     }
 
     public void delete()

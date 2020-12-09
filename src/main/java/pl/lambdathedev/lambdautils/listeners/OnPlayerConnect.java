@@ -1,12 +1,12 @@
 package pl.lambdathedev.lambdautils.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
-import org.bukkit.event.player.PlayerPreLoginEvent;
 import pl.lambdathedev.lambdautils.utils.messaging.MessagingUtil;
 import pl.lambdathedev.lambdautils.utils.punishments.Punishment;
 import pl.lambdathedev.lambdautils.utils.punishments.PunishmentsManager;
@@ -24,7 +24,14 @@ public class OnPlayerConnect implements Listener
         Punishment ban = PunishmentsManager.getBan(uuid);
         if(ban != null)
         {
-            Player issuer = (Player) Bukkit.getOfflinePlayer(ban.getIssuer());
+            OfflinePlayer issuer = Bukkit.getOfflinePlayer(ban.getIssuer());
+
+            if(!issuer.hasPlayedBefore())
+            {
+                System.out.println("Something is wrong and I can feel it...");
+                return;
+            }
+
             String reason = ban.getReason();
             Date now = new Date();
 
@@ -34,9 +41,9 @@ public class OnPlayerConnect implements Listener
                         "&cBanned by: &e" + issuer.getName() + "\n" +
                         "&cReason: &e" + reason;
 
-                reason = MessagingUtil.parseMessage(reason);
+                banMessage = MessagingUtil.parseMessage(banMessage);
 
-                e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, reason);
+                e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, banMessage);
             }
             else if(now.after(ban.getExpiryDate()))
             {
@@ -50,9 +57,9 @@ public class OnPlayerConnect implements Listener
                         "&cExpires" + format.format(ban.getExpiryDate()) +
                         "&cReason: &e" + reason;
 
-                reason = MessagingUtil.parseMessage(reason);
+                banMessage = MessagingUtil.parseMessage(banMessage);
 
-                e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, reason);
+                e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_BANNED, banMessage);
             }
         }
     }

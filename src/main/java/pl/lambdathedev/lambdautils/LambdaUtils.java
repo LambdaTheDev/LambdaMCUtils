@@ -24,16 +24,17 @@ public final class LambdaUtils extends JavaPlugin
     @Override
     public void onEnable()
     {
+        instance = this;
+
+        configManager = new ConfigManager(this);
         ranks = new HashMap<>();
         playerData = new HashMap<>();
-        configManager = new ConfigManager(this);
-        new AutoMessageUtil(this);
 
         registerCommands();
         registerListeners();
         loadRanks();
 
-        instance = this;
+        new AutoMessageUtil(this);
     }
 
     private void registerListeners()
@@ -68,6 +69,7 @@ public final class LambdaUtils extends JavaPlugin
         for(Rank rank : ranks)
         {
             this.ranks.put(rank.getName(), rank);
+            rank.save();
         }
     }
 

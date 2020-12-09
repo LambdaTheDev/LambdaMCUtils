@@ -1,6 +1,7 @@
 package pl.lambdathedev.lambdautils.listeners;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -54,13 +55,13 @@ public class OnPlayerChat implements Listener
         if(rank == null)
         {
             MessagingUtil.sendMessageToEveryone(
-                    MessagingUtil.parseMessage("&7" + p.getName() + " &r>> &7" + e.getMessage())
+                    ChatColor.translateAlternateColorCodes('&', "&7" + p.getName() + " &r>> &7" + e.getMessage())
             );
         }
         else
         {
             MessagingUtil.sendMessageToEveryone(
-                    MessagingUtil.parseMessage(rank.getPrefix() + " &f" + p.getName() + "&r>> &f" + e.getMessage())
+                    ChatColor.translateAlternateColorCodes('&', rank.getPrefix() + " &f" + p.getName() + "&r>> &f" + e.getMessage())
             );
         }
     }

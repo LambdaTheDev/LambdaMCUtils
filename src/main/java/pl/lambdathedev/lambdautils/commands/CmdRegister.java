@@ -51,6 +51,7 @@ public class CmdRegister implements CommandExecutor
             }
 
             data.setPassword(password);
+            data.save();
             data.login();
 
             sender.sendMessage(MessagingUtil.parseMessage("&aYou have successfully registered and logged in!"));

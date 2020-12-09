@@ -28,8 +28,7 @@ public class CmdGameMode implements CommandExecutor
                 return false;
             }
 
-
-            if(!(sender instanceof Player) && args[1] == null)
+            if(!(sender instanceof Player) && args.length != 2 && args[1] == null)
             {
                 sender.sendMessage("You can not set game mode for a console!");
                 return false;
@@ -37,7 +36,7 @@ public class CmdGameMode implements CommandExecutor
 
             Player target = null;
 
-            if(args[1] != null)
+            if(args.length == 2 && args[1] != null)
             {
                 target = Bukkit.getPlayer(args[1]);
                 if(target == null)
