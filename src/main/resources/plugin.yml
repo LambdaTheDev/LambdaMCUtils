@@ -17,3 +17,4 @@ commands:
   rules:
   unban:
   unmute:
+  reloadcfg:

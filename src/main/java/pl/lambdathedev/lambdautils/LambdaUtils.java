@@ -66,6 +66,7 @@ public final class LambdaUtils extends JavaPlugin
         getCommand("rules").setExecutor(new CmdRules());
         getCommand("unban").setExecutor(new CmdUnBan());
         getCommand("unmute").setExecutor(new CmdUnMute());
+        getCommand("reloadcfg").setExecutor(new CmdReloadCfg());
     }
 
     public void reloadConfiguration()
