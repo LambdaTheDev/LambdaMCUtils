@@ -23,6 +23,7 @@ public class AutoMessageUtil
         DefaultConfig cfg = LambdaUtils.getInstance().getConfigManager().getDefaultConfig();
         List<String> messages = cfg.getConfig().getStringList("automessageMessages");
         long delay = 20L * 60L * cfg.getConfig().getLong("automessageDelay");
+        //long delay = 20L * 5;
         AtomicInteger currentMessage = new AtomicInteger();
         int allMessages = messages.size();
 
@@ -30,13 +31,15 @@ public class AutoMessageUtil
 
         Bukkit.getScheduler().scheduleSyncRepeatingTask(plugin, () ->
         {
-            MessagingUtil.sendMessageToEveryone(MessagingUtil.parseMessage(messages.get(currentMessage.get())));
-            currentMessage.getAndIncrement();
-            if(currentMessage.getAndIncrement() >= allMessages)
+            if(currentMessage.get() >= allMessages)
             {
                 currentMessage.set(0);
             }
-
+            else
+            {
+                MessagingUtil.sendMessageToEveryone(MessagingUtil.parseMessage(messages.get(currentMessage.get())));
+                currentMessage.set(currentMessage.getAndIncrement());
+            }
         }, delay, delay);
     }
 }

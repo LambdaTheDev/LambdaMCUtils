@@ -35,7 +35,7 @@ public final class LambdaUtils extends JavaPlugin
 
         registerCommands();
         registerListeners();
-        loadRanks();
+        reloadConfiguration();
 
         new AutoMessageUtil(this);
     }
@@ -68,13 +68,15 @@ public final class LambdaUtils extends JavaPlugin
         getCommand("unmute").setExecutor(new CmdUnMute());
     }
 
-    private void loadRanks()
+    public void reloadConfiguration()
     {
+        configManager = new ConfigManager(this);
+
+        ranks.clear();
         Collection<Rank> ranks = RanksManager.getAllRanks();
         for(Rank rank : ranks)
         {
             this.ranks.put(rank.getName(), rank);
-            rank.save();
         }
     }
 
@@ -83,23 +85,6 @@ public final class LambdaUtils extends JavaPlugin
     {
     }
 
-    /*
-    @Override
-    public void onLoad()
-    {
-        playerData.clear();
-        for(Player p : Bukkit.getServer().getOnlinePlayers())
-        {
-            PlayerData data = PlayerDataManager.getPlayerData(p);
-            if(data == null)
-            {
-                data = PlayerDataManager.createPlayerData(p);
-            }
-            playerData.put(p.getUniqueId(), data);
-        }
-    }
-
-     */
 
     public static LambdaUtils getInstance()
     {
@@ -119,10 +104,5 @@ public final class LambdaUtils extends JavaPlugin
     public ConfigManager getConfigManager()
     {
         return configManager;
-    }
-
-    public void reloadRanks()
-    {
-        loadRanks();
     }
 }

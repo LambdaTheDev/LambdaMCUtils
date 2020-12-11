@@ -36,7 +36,7 @@ public class CmdModifyRank implements CommandExecutor
             {
                 if(args[0].equalsIgnoreCase("reloadRanks"))
                 {
-                    LambdaUtils.getInstance().reloadRanks();
+                    LambdaUtils.getInstance().reloadConfiguration();
                     sender.sendMessage(MessagingUtil.parseMessage("&aAll ranks have been reloaded successfully!"));
                     return true;
                 }
@@ -131,7 +131,8 @@ public class CmdModifyRank implements CommandExecutor
 
                 rank.delete();
                 sender.sendMessage(MessagingUtil.parseMessage("&cDeleted " + rank.getName() + " rank successfully!"));
-                LambdaUtils.getInstance().reloadRanks();
+                LambdaUtils.getInstance().reloadConfiguration();
+
                 return true;
             }
 

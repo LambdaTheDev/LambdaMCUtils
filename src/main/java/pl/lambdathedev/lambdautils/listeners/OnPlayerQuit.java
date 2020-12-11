@@ -6,6 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pl.lambdathedev.lambdautils.LambdaUtils;
+import pl.lambdathedev.lambdautils.utils.messaging.MessagingUtil;
 import pl.lambdathedev.lambdautils.utils.playerdata.PlayerData;
 
 public class OnPlayerQuit implements Listener
@@ -24,7 +25,6 @@ public class OnPlayerQuit implements Listener
         }
 
         leaveMessage = leaveMessage.replace("{player}", e.getPlayer().getName());
-        leaveMessage = ChatColor.translateAlternateColorCodes('&', leaveMessage);
-        e.setQuitMessage(leaveMessage);
+        e.setQuitMessage(MessagingUtil.parseMessage(leaveMessage));
     }
 }

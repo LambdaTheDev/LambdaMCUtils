@@ -23,7 +23,7 @@ public class OnPlayerJoin implements Listener
         }
 
         LambdaUtils.getInstance().getPlayerData().put(e.getPlayer().getUniqueId(), data);
-        if(data.getRank() != null)
+        if(data.getRank() != null && LambdaUtils.getInstance().getRanks().getOrDefault(data.getRank().getName(), null) != null)
         {
             data.getRank().applyPermissions(e.getPlayer().getUniqueId());
         }
@@ -35,8 +35,7 @@ public class OnPlayerJoin implements Listener
         }
 
         joinMessage = joinMessage.replace("{player}", e.getPlayer().getName());
-        joinMessage = ChatColor.translateAlternateColorCodes('&', joinMessage);
-        e.setJoinMessage(joinMessage);
+        e.setJoinMessage(MessagingUtil.parseMessage(joinMessage));
 
         new BukkitRunnable()
         {
