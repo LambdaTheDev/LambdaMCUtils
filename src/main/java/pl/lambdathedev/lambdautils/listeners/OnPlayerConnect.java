@@ -8,6 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
 import pl.lambdathedev.lambdautils.utils.messaging.MessagingUtil;
+import pl.lambdathedev.lambdautils.utils.nicknames.NicknamesManager;
 import pl.lambdathedev.lambdautils.utils.punishments.Punishment;
 import pl.lambdathedev.lambdautils.utils.punishments.PunishmentsManager;
 
@@ -21,6 +22,9 @@ public class OnPlayerConnect implements Listener
     public void onPlayerConnect(AsyncPlayerPreLoginEvent e)
     {
         UUID uuid = e.getUniqueId();
+
+        NicknamesManager.updateNickname(uuid, e.getName());
+
         Punishment ban = PunishmentsManager.getBan(uuid);
         if(ban != null)
         {

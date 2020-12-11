@@ -1,13 +1,13 @@
-prefix: '&aLambdaUtils >> &r'
+prefix: '&kX&r&6Lambda&aUtils&r&kX&r &c&l>> &r'
 rules:
   - "Do not grief"
   - "Be cool"
 automessageMessages:
-  - "&aPlugin developed by LambdaTheDev (https://github.com/LambdaTheDev)!"
-  - "&cCheck server rules by using /rules command!"
-  - "&aWant to see more from Lambda? Check out their Discord: https://discord.gg/jn3w3RvVhY!"
+  - "&aPlugin developed by &9LambdaTheDev&a! Visit their GitHub profile: &3https://github.com/LambdaTheDev/&a!"
+  - "&cWant to see rules that apply on this server? Use &c/rules&c command!"
+  - "&dIf you are interested in more Lambda's works, visit their Discord: &9https://discord.gg/jn3w3RvVhY&d!"
 automessageDelay: 5
-motd: "Super server. Join now."
-joinMessage: "{player} joined the server!"
-leaveMessage: "{player} has left the server!"
+motd: "&aServer powered by: &cLambdaUtils &aplugin! &4Join now!"
+joinMessage: "&6{player} &ajoined the server!"
+leaveMessage: "&6{player} &chas left the server!"
 password-salt: "fsdic90ejtue8j3ct3"

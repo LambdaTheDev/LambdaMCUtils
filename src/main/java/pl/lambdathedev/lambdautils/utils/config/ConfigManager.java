@@ -1,16 +1,18 @@
 package pl.lambdathedev.lambdautils.utils.config;
 
 import pl.lambdathedev.lambdautils.LambdaUtils;
+import pl.lambdathedev.lambdautils.utils.config.custom.NicknamesConfig;
 import pl.lambdathedev.lambdautils.utils.config.custom.PlayersConfig;
 import pl.lambdathedev.lambdautils.utils.config.custom.PunishmentsConfig;
 import pl.lambdathedev.lambdautils.utils.config.custom.RanksConfig;
 
 public class ConfigManager
 {
-    private DefaultConfig defaultConfig;
-    private PunishmentsConfig punishmentsConfig;
-    private RanksConfig ranksConfig;
-    private PlayersConfig playersConfig;
+    private final DefaultConfig defaultConfig;
+    private final PunishmentsConfig punishmentsConfig;
+    private final RanksConfig ranksConfig;
+    private final PlayersConfig playersConfig;
+    private final NicknamesConfig nicknamesConfig;
 
     public ConfigManager(LambdaUtils plugin)
     {
@@ -23,11 +25,13 @@ public class ConfigManager
         punishmentsConfig = new PunishmentsConfig(plugin);
         ranksConfig = new RanksConfig(plugin);
         playersConfig = new PlayersConfig(plugin);
+        nicknamesConfig = new NicknamesConfig(plugin);
 
         defaultConfig.setup();
         punishmentsConfig.setup();
         ranksConfig.setup();
         playersConfig.setup();
+        nicknamesConfig.setup();
     }
 
     public DefaultConfig getDefaultConfig()
@@ -48,5 +52,10 @@ public class ConfigManager
     public PlayersConfig getPlayersConfig()
     {
         return playersConfig;
+    }
+
+    public NicknamesConfig getNicknamesConfig()
+    {
+        return nicknamesConfig;
     }
 }

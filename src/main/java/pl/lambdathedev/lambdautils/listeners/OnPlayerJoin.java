@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import pl.lambdathedev.lambdautils.LambdaUtils;
+import pl.lambdathedev.lambdautils.utils.messaging.MessagingUtil;
 import pl.lambdathedev.lambdautils.utils.playerdata.PlayerData;
 import pl.lambdathedev.lambdautils.utils.playerdata.PlayerDataManager;
 
@@ -45,7 +46,7 @@ public class OnPlayerJoin implements Listener
                 PlayerData data = LambdaUtils.getInstance().getPlayerData().getOrDefault(e.getPlayer().getUniqueId(), null);
                 if(data != null && !data.isLoggedIn())
                 {
-                    data.getPlayer().kickPlayer("&cYou did not log in!");
+                    data.getPlayer().kickPlayer(MessagingUtil.parseMessage("&cYou did not log in in time!"));
                 }
             }
         }.runTaskLater(LambdaUtils.getPlugin(LambdaUtils.class), 20 * 60 * 3); //3 minutes

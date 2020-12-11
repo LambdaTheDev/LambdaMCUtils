@@ -1,5 +1,8 @@
 package pl.lambdathedev.lambdautils.utils.punishments;
 
+import pl.lambdathedev.lambdautils.LambdaUtils;
+import pl.lambdathedev.lambdautils.utils.config.custom.PunishmentsConfig;
+
 import java.util.Date;
 import java.util.UUID;
 
@@ -22,7 +25,12 @@ public class Punishment
 
     public void delete()
     {
+        PunishmentsConfig cfg = LambdaUtils.getInstance().getConfigManager().getPunishmentsConfig();
+        String hook = "mutes.";
+        if(type == PunishmentType.BAN || type == PunishmentType.TEMP_BAN) hook = "bans.";
 
+        cfg.getConfig().set(hook + uuid.toString(), null);
+        cfg.save();
     }
 
     public UUID getUuid()

@@ -1,11 +1,14 @@
 package pl.lambdathedev.lambdautils;
 
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pl.lambdathedev.lambdautils.commands.*;
 import pl.lambdathedev.lambdautils.listeners.*;
 import pl.lambdathedev.lambdautils.utils.AutoMessageUtil;
 import pl.lambdathedev.lambdautils.utils.config.ConfigManager;
 import pl.lambdathedev.lambdautils.utils.playerdata.PlayerData;
+import pl.lambdathedev.lambdautils.utils.playerdata.PlayerDataManager;
 import pl.lambdathedev.lambdautils.utils.ranks.Rank;
 import pl.lambdathedev.lambdautils.utils.ranks.RanksManager;
 
@@ -61,6 +64,8 @@ public final class LambdaUtils extends JavaPlugin
         getCommand("setrank").setExecutor(new CmdSetRank());
         getCommand("register").setExecutor(new CmdRegister());
         getCommand("rules").setExecutor(new CmdRules());
+        getCommand("unban").setExecutor(new CmdUnBan());
+        getCommand("unmute").setExecutor(new CmdUnMute());
     }
 
     private void loadRanks()
@@ -77,6 +82,24 @@ public final class LambdaUtils extends JavaPlugin
     public void onDisable()
     {
     }
+
+    /*
+    @Override
+    public void onLoad()
+    {
+        playerData.clear();
+        for(Player p : Bukkit.getServer().getOnlinePlayers())
+        {
+            PlayerData data = PlayerDataManager.getPlayerData(p);
+            if(data == null)
+            {
+                data = PlayerDataManager.createPlayerData(p);
+            }
+            playerData.put(p.getUniqueId(), data);
+        }
+    }
+
+     */
 
     public static LambdaUtils getInstance()
     {

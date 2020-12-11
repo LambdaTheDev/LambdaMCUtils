@@ -61,7 +61,7 @@ public class OnPlayerChat implements Listener
         else
         {
             MessagingUtil.sendMessageToEveryone(
-                    ChatColor.translateAlternateColorCodes('&', rank.getPrefix() + " &f" + p.getName() + "&r>> &f" + e.getMessage())
+                    ChatColor.translateAlternateColorCodes('&', rank.getPrefix() + " &f" + p.getName() + " &r>> &f" + e.getMessage())
             );
         }
     }

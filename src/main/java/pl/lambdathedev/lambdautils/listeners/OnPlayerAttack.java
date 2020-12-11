@@ -26,7 +26,7 @@ public class OnPlayerAttack implements Listener
 
         if(e.getDamager() instanceof Player)
         {
-            PlayerData data = LambdaUtils.getInstance().getPlayerData().get(e.getEntity().getUniqueId());
+            PlayerData data = LambdaUtils.getInstance().getPlayerData().get(e.getDamager().getUniqueId());
             if(!data.isLoggedIn())
             {
                 e.setCancelled(true);

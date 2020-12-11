@@ -45,14 +45,14 @@ public class PunishmentsManager
     public static Punishment getMute(UUID uuid)
     {
         FileConfiguration cfg = LambdaUtils.getInstance().getConfigManager().getPunishmentsConfig().getConfig();
-        if(!cfg.contains("bans." + uuid.toString()))
+        if(!cfg.contains("mutes." + uuid.toString()))
         {
             return null;
         }
 
-        String issuerUUIDStr = cfg.getString("bans." + uuid.toString() + ".issuer");
-        String reason = cfg.getString("bans." + uuid.toString() + ".reason");
-        String expiryDateStr = cfg.getString("bans." + uuid.toString() + ".expiryDate");
+        String issuerUUIDStr = cfg.getString("mutes." + uuid.toString() + ".issuer");
+        String reason = cfg.getString("mutes." + uuid.toString() + ".reason");
+        String expiryDateStr = cfg.getString("mutes." + uuid.toString() + ".expiryDate");
 
         UUID issuerUUID = UUID.fromString(issuerUUIDStr);
         Date expiryDate = null;
@@ -65,7 +65,7 @@ public class PunishmentsManager
             }
             catch (ParseException e)
             {
-                Bukkit.getConsoleSender().sendMessage("ERROR: INVALID EXPIRY DATE IN " + uuid.toString() + " BAN! IGNORING...");
+                Bukkit.getConsoleSender().sendMessage("ERROR: INVALID EXPIRY DATE IN " + uuid.toString() + " MUTE! IGNORING...");
             }
         }
 
