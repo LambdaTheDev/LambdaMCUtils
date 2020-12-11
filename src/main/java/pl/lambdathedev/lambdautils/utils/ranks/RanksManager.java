@@ -21,6 +21,21 @@ public class RanksManager
         return new Rank(name, prefix, permissions);
     }
 
+    public static Rank createRank(String name)
+    {
+        FileConfiguration cfg = LambdaUtils.getInstance().getConfigManager().getRanksConfig().getConfig();
+        if(cfg.contains("ranks." + name)) return null;
+
+        String prefix = "&8[&7" + name + "&8]&r";
+        List<String> permissions = new ArrayList<>();
+
+        Rank rank = new Rank(name, prefix, permissions);
+        rank.save();
+
+        LambdaUtils.getInstance().getRanks().put(rank.getName(), rank);
+        return rank;
+    }
+
     public static Collection<Rank> getAllRanks()
     {
         FileConfiguration cfg = LambdaUtils.getInstance().getConfigManager().getRanksConfig().getConfig();
