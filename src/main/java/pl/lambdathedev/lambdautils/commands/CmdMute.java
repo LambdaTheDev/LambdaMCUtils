@@ -51,13 +51,7 @@ public class CmdMute implements CommandExecutor
                 reason.append(args[i]).append(" ");
             }
 
-            UUID issuerUUID = null;
-            if(sender instanceof Player)
-            {
-                issuerUUID = ((Player) sender).getUniqueId();
-            }
-
-            PunishmentsManager.punish(targetPlayer.getUniqueId(), issuerUUID, PunishmentType.MUTE, null, reason.toString());
+            PunishmentsManager.punish(targetPlayer.getUniqueId(), sender.getName(), PunishmentType.MUTE, null, reason.toString());
             MessagingUtil.sendMessageToEveryone(
                     MessagingUtil.parseMessage("&4" + targetPlayer.getName() + " got permanently muted by "
                             + sender.getName() + "! Reason: " + reason.toString())

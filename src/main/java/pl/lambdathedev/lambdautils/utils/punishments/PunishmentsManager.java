@@ -23,7 +23,6 @@ public class PunishmentsManager
         String reason = cfg.getString("bans." + uuid.toString() + ".reason");
         String expiryDateStr = cfg.getString("bans." + uuid.toString() + ".expiryDate");
 
-        UUID issuerUUID = UUID.fromString(issuerUUIDStr);
         Date expiryDate = null;
         if(expiryDateStr != null)
         {
@@ -39,7 +38,7 @@ public class PunishmentsManager
         }
 
         PunishmentType type = expiryDate == null ? PunishmentType.BAN : PunishmentType.TEMP_BAN;
-        return new Punishment(uuid, issuerUUID, type, expiryDate, reason);
+        return new Punishment(uuid, issuerUUIDStr, type, expiryDate, reason);
     }
 
     public static Punishment getMute(UUID uuid)
@@ -54,7 +53,6 @@ public class PunishmentsManager
         String reason = cfg.getString("mutes." + uuid.toString() + ".reason");
         String expiryDateStr = cfg.getString("mutes." + uuid.toString() + ".expiryDate");
 
-        UUID issuerUUID = UUID.fromString(issuerUUIDStr);
         Date expiryDate = null;
         if(expiryDateStr != null)
         {
@@ -70,10 +68,10 @@ public class PunishmentsManager
         }
 
         PunishmentType type = expiryDate == null ? PunishmentType.MUTE : PunishmentType.TEMP_MUTE;
-        return new Punishment(uuid, issuerUUID, type, expiryDate, reason);
+        return new Punishment(uuid, issuerUUIDStr, type, expiryDate, reason);
     }
 
-    public static boolean punish(UUID uuid, UUID issuer, PunishmentType type, Date expiryDate, String reason)
+    public static boolean punish(UUID uuid, String issuer, PunishmentType type, Date expiryDate, String reason)
     {
         FileConfiguration cfg = LambdaUtils.getInstance().getConfigManager().getPunishmentsConfig().getConfig();
         String typeStr = "bans";
@@ -94,7 +92,12 @@ public class PunishmentsManager
             expiryDateStr = format.format(expiryDate);
         }
 
-        cfg.set(typeStr + "." + uuid.toString() + ".issuer", issuer.toString());
+        if(issuer == null)
+        {
+            issuer = "CONSOLE";
+        }
+
+        cfg.set(typeStr + "." + uuid.toString() + ".issuer", issuer);
         cfg.set(typeStr + "." + uuid.toString() + ".reason", reason);
         cfg.set(typeStr + "." + uuid.toString() + ".expiryDate", expiryDateStr);
         LambdaUtils.getInstance().getConfigManager().getPunishmentsConfig().save();

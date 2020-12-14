@@ -9,12 +9,12 @@ import java.util.UUID;
 public class Punishment
 {
     private UUID uuid;
-    private UUID issuer;
+    private String issuer;
     private PunishmentType type;
     private Date expiryDate;
     private String reason;
 
-    public Punishment(UUID uuid, UUID issuer, PunishmentType type, Date expiryDate, String reason)
+    public Punishment(UUID uuid, String issuer, PunishmentType type, Date expiryDate, String reason)
     {
         this.uuid = uuid;
         this.issuer = issuer;
@@ -38,7 +38,7 @@ public class Punishment
         return uuid;
     }
 
-    public UUID getIssuer()
+    public String getIssuer()
     {
         return issuer;
     }

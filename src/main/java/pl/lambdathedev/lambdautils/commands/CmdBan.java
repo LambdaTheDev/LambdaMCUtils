@@ -50,15 +50,9 @@ public class CmdBan implements CommandExecutor
                 reason.append(args[i]).append(" ");
             }
 
-            UUID issuerUUID = null;
-            if(sender instanceof Player)
-            {
-                issuerUUID = ((Player) sender).getUniqueId();
-            }
-
             targetPlayer.kickPlayer("Disconnected. Rejoin for more information.");
 
-            PunishmentsManager.punish(targetPlayer.getUniqueId(), issuerUUID, PunishmentType.BAN, null, reason.toString());
+            PunishmentsManager.punish(targetPlayer.getUniqueId(), sender.getName(), PunishmentType.BAN, null, reason.toString());
             MessagingUtil.sendMessageToEveryone(
                     MessagingUtil.parseMessage("&4" + targetPlayer.getName() + " got permanently banned by "
                                     + sender.getName() + "! Reason: " + reason.toString())

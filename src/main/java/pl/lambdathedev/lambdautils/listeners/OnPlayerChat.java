@@ -30,11 +30,10 @@ public class OnPlayerChat implements Listener
         if(mute != null)
         {
             Date now = new Date();
-            Player issuer = (Player) Bukkit.getOfflinePlayer(mute.getUuid());
 
             if(mute.getExpiryDate() == null)
             {
-                p.sendMessage(MessagingUtil.parseMessage("&cYou are muted by: " + issuer.getName() + " for permanent! Reason: " + mute.getReason() + "."));
+                p.sendMessage(MessagingUtil.parseMessage("&cYou are muted by: " + mute.getIssuer() + " for permanent! Reason: " + mute.getReason() + "."));
                 return;
             }
             else if(now.after(mute.getExpiryDate()))
@@ -44,7 +43,7 @@ public class OnPlayerChat implements Listener
             else
             {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyy-MM-dd HH:mm:ss");
-                p.sendMessage(MessagingUtil.parseMessage("&cYou are muted by: " + issuer.getName() + " until " + dateFormat.format(mute.getExpiryDate()) + "! Reason: " + mute.getReason() + "."));
+                p.sendMessage(MessagingUtil.parseMessage("&cYou are muted by: " + mute.getIssuer() + " until " + dateFormat.format(mute.getExpiryDate()) + "! Reason: " + mute.getReason() + "."));
                 return;
             }
         }

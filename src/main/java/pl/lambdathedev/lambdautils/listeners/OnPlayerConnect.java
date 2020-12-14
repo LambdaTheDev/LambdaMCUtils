@@ -28,21 +28,13 @@ public class OnPlayerConnect implements Listener
         Punishment ban = PunishmentsManager.getBan(uuid);
         if(ban != null)
         {
-            OfflinePlayer issuer = Bukkit.getOfflinePlayer(ban.getIssuer());
-
-            if(!issuer.hasPlayedBefore())
-            {
-                System.out.println("Something is wrong and I can feel it...");
-                return;
-            }
-
             String reason = ban.getReason();
             Date now = new Date();
 
             if(ban.getExpiryDate() == null)
             {
                 String banMessage = "&cYou are permanently banned from this server!&r\n\n" +
-                        "&cBanned by: &e" + issuer.getName() + "\n" +
+                        "&cBanned by: &e" + ban.getIssuer() + "\n" +
                         "&cReason: &e" + reason;
 
                 banMessage = MessagingUtil.parseMessage(banMessage);
@@ -57,7 +49,7 @@ public class OnPlayerConnect implements Listener
             {
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 String banMessage = "&cYou are temporarily banned from this server!&r\n\n" +
-                        "&cBanned by: &e" + issuer.getName() + "\n" +
+                        "&cBanned by: &e" + ban.getIssuer() + "\n" +
                         "&cExpires" + format.format(ban.getExpiryDate()) +
                         "&cReason: &e" + reason;
 

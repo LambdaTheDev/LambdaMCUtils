@@ -1,6 +1,9 @@
 package pl.lambdathedev.lambdautils.listeners;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
+import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -16,6 +19,10 @@ public class OnPlayerJoin implements Listener
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent e)
     {
+//        Location playerLocation = e.getPlayer().getLocation();
+//        int highestBlock = playerLocation.getWorld().getHighestBlockYAt(playerLocation.getBlockX(), playerLocation.getBlockZ());
+//        e.getPlayer().getLocation().setY();
+
         PlayerData data = PlayerDataManager.getPlayerData(e.getPlayer());
         if(data == null)
         {
